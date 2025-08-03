@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package testdata;
+
+option go_package = "proto/testdata";
+
+import "google/api/annotations.proto";
+
+service TestDataService {
+  rpc GetTestData (GetTestDataRequest) returns (TestDataResponse) {
+    option (google.api.http) = {
+      get: "/test-data"
+    };
+  }
+}
+
+message GetTestDataRequest {}
+
+message Person {
+  string name = 1;
+  int32 age = 2;
+  string profession = 3;
+}
+
+message TestDataResponse {
+  repeated Person persons = 1;
+}
